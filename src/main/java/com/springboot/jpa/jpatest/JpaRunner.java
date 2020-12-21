@@ -22,7 +22,17 @@ public class JpaRunner implements ApplicationRunner {
         dogHomeAddress.setCity("test");
         dog.setDogName("DogTest");
         dog.setDogHomeAddress(dogHomeAddress);
-        
-        entityManager.persist(dog);
+
+        CatHome catHome = new CatHome();
+        catHome.setCatHomeName("BigHome");
+
+        Cat cat = new Cat();
+        cat.setCatName("cats");
+        cat.setCatHome(catHome);
+
+        catHome.getCats().add(cat);
+
+        entityManager.persist(catHome);
+        entityManager.persist(cat);
     }
 }
