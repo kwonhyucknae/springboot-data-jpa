@@ -22,7 +22,8 @@ public class Dog {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "street", column = @Column("house_street"))
+            @AttributeOverride(name = "street", column = @Column(name = "house_street")),
+            @AttributeOverride(name = "city" , column= @Column(name = "house_city"))
     })
     private DogHomeAddress difDogHomeAddress;
 
