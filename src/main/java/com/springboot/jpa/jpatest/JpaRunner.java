@@ -34,5 +34,10 @@ public class JpaRunner implements ApplicationRunner {
 
         entityManager.persist(catHome);
         entityManager.persist(cat);
+
+        cat.setCatName("cat123");
+        cat.setCatName("cats");
+        entityManager.find(Cat.class, cat.getId());
+
     }
 }
