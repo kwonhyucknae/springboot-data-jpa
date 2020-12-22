@@ -1,4 +1,4 @@
-package com.springboot.jpa.jpatest;
+package com.springboot.jpa.jpatest.model;
 
 import lombok.Getter;
 import lombok.Setter;

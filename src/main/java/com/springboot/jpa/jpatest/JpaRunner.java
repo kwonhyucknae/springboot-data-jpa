@@ -1,5 +1,9 @@
 package com.springboot.jpa.jpatest;
 
+import com.springboot.jpa.jpatest.model.Cat;
+import com.springboot.jpa.jpatest.model.CatHome;
+import com.springboot.jpa.jpatest.model.Dog;
+import com.springboot.jpa.jpatest.model.DogHomeAddress;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -16,12 +20,22 @@ public class JpaRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+//        embeddedTest();
+        relationTest();
+    }
+
+    private void embeddedTest() {
         Dog dog = new Dog();
         DogHomeAddress dogHomeAddress = new DogHomeAddress();
 
         dogHomeAddress.setCity("test");
         dog.setDogName("DogTest");
         dog.setDogHomeAddress(dogHomeAddress);
+
+        entityManager.persist(dog);
+    }
+
+    private void relationTest() {
 
         CatHome catHome = new CatHome();
         catHome.setCatHomeName("BigHome");
@@ -38,6 +52,5 @@ public class JpaRunner implements ApplicationRunner {
         cat.setCatName("cat123");
         cat.setCatName("cats");
         entityManager.find(Cat.class, cat.getId());
-
     }
 }
