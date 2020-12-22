@@ -23,19 +23,17 @@ class JpaStateTests {
     @Test
     @Rollback(false)
     void dirtyCheckTest() {
-        Dog dog = new Dog();
-        DogHomeAddress dogHomeAddress = new DogHomeAddress();
-
-        dogHomeAddress.setCity("test");
-        dog.setDogName("DogTest");
-        dog.setDogHomeAddress(dogHomeAddress);
-
-
+        // Given
         Cat cat = new Cat();
         cat.setCatName("cats123");
 
+        // When
         catRepository.save(cat);
-        assertThat(cat.getId()).isNotNull();
+        cat.setCatName("cats1234");
+        cat.setCatName("cats123");
 
+        catRepository.findAllByCatName(cat.getCatName());
+        // Then
+        assertThat(cat.getId()).isNotNull();
     }
 }
